@@ -1,0 +1,153 @@
+what is redis?
+Open source in-memory data structure store which can be used as a database and/or a cache and message broker
+NoSql,  key/Value store
+Supports Multiple Data structures (list set and others  best feature)
+Built in Replication ( can replicate master server )
+
+
+Redis Data Types
+strings                     Bitmaps     (based on strings)
+lists                       Hyperlogs
+sets                        Geospatial Indexes
+Sorted sets
+Hashes (same like Json)
+
+Advantages of Redis
+Very Flexible
+No Schemas & Column Names
+Very Fast: Can perform around 110,000 SETs per second, about 81,000 GETs per second
+Rich datatypes support
+cache and disk presistence
+
+search for "cache and disk presistence memcache"?
+
+Redis & Security
+Designes to be accessed by trusted clients
+Do not allow external access/ Internet exposure
+Simple authentiction can be setup
+can be restricted to certain interfaces
+data encryption not supported
+
+Installation on windows
+Go to https://github.com/MicrosoftArchive/redis/releases
+Download latest version of redis and Download ".msi" file
+Install it
+Go to Redis folder and run redis-cli.exe 
+
+
+In Terminal
+
+ping
+>pong
+
+Set foo 100
+get foo
+TYPE foo    //number
+
+Set bar "Hello world"
+get bar
+TYPE bar    //string
+
+INCR foo   // 101
+DECR bar   // 100
+INCRBY foo 200  //300
+
+EXISTS foo  // 1 (if present otherwise 0)
+DEL bar     // 1 (if present otherwise 0)
+FLUSHALL    // for deleting all the value
+
+SET server:name someserver  // OK
+GET server:name             // "someserver"
+
+To set expiration of the variable
+SET greetings "Hello world"
+GET greetings                   //"Hello world"
+EXPIRE greetings 50             // to set the expiration in second
+TTL greetings                   // return the time to live
+GET greetings                   // (nil)
+
+SETEX greeting 30 "Hello world"     //Setting variable value with expiration
+PERSIST greeting                    //To make the value persist even after expiration is set
+
+MSET key1 "Hello" key2 "world"      // More than 1 value set
+GET key1                            // "Hello"
+Get key2                            // "World"
+MGET key1 key2                      // for getting multiple values 
+
+APPEND key1 " World"
+RENAME key1 himank 
+GET key1                //nil
+GET himank              //helo world
+
+----------------------List variable----------------
+LPUSH people "Himank"
+LPUSH people "Priyanshu"
+LPUSH people "Ram"  
+
+LRANGE people 0 -1      // Ram, Priyanshu, Himank
+LRANGE people 1 2       // Priyanshu, Himank
+
+RPUSH people Harry      // .....Himank, Harry
+
+LLEN people     //gives the length of the list
+
+Removing from list
+LPOP people
+RPOP people
+
+LINSERT people BEFORE "Priyanshu" "SHYAM"
+
+--------------------------SETS----------------
+SADD pets "HAMSTER"
+SADD pets "PUMA"
+SADD pets "DOG"
+
+SISMEMBER pets "PUMA"   //1
+SISMEMBER pets "CAT"    //0
+
+SMEMBERS pets
+1) HAMSTER
+2) PUMA
+3) DOG
+
+SCARD pets                  // 3 (size)
+SMOVE pets mypets "DOG"     // moves dog to mypets
+SREM pets "Hamster"         // removes the member
+
+----------------------SORTED SETS----------------------
+ZADD users 1998 "Himank"
+ZADD users 2003 "Priyanshu"
+ZADD users 2004 "Ram"
+ZADD users 2004 "Shyam"
+
+ZRANK users Himank              //returns rank on the basis of high(n-1) to low (0) 
+>0
+ZRANK users Ram
+>3
+
+ZRANGE users 0 -1               //prints all the members in the set
+ZINCRBY users 1 "Priyanshu"     //to increase the bday of priyanshu by 1
+
+----------------------HASHES-------------------------------------
+HSET user:himank name "Himanshu kumar"
+HSET user:himank email "himank@gmail.com"
+
+HGET user:himank name
+HGET user:himank email
+
+HGETALL user:himank
+1)"name"
+2)"Himanshu kumar"
+3)"email"
+4)"himank@gmail.com"
+
+HMSET user:john name "John Doe" email "jdoe@yahoo.com" age "25"
+
+HGETALL user:john
+
+HKEYS user:john          //name email age
+HVALS  user:john         //"john doe" "jdoe@gmail.com" "25"
+
+HINCRBY user:john age 1
+HDEL user:john age
+HLEN user:john          // returns the number of pairs in the john
