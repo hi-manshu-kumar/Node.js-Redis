@@ -20,6 +20,7 @@ Rich datatypes support
 cache and disk presistence
 
 search for "cache and disk presistence memcache"?
+https://www.codementor.io/brainyfarm/introduction-to-caching-and-redis-h6o16p4qx 
 
 Redis & Security
 Designes to be accessed by trusted clients

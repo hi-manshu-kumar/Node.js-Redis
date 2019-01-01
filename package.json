@@ -1,0 +1,18 @@
+{
+  "name": "Node.js-Redis",
+  "version": "1.0.0",
+  "main": "server.js",
+  "description": "Simple user management app using redis as a database",
+  "repository": "https://github.com/hi-manshu-kumar/Node.js-Redis.git",
+  "author": "hi-manshu-kumar <himanshu.kumar394@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^3.0.0",
+    "redis": "^2.8.0"
+  }
+}
